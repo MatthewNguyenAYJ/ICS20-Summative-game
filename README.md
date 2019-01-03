@@ -1,6 +1,6 @@
 # ICS20-Summative-game
 
-This is our group project on galacraft (Benjamin, Matthew and David)
+This is our group project on Galactacraft (Benjamin, Matthew and David)
 The theme is Dignity of Persons, the teaching is humility(to be humble about your accomplishment is to be strong).
 
 <h1> The following chart is some of the stuff the kids from St. Martin de Porres school suggested to add to our game </h1>
