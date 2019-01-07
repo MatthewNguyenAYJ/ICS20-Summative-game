@@ -59,37 +59,198 @@ var drawScene2= function(){
  	fill(250,0,0);
   text("Raptor",320,215);
   image(img2, 300, 250,105,105)
+
+
+function characterbutton (config) {
+	
+ 		this.x = config.x || 0;
+    this.y = config.y || 0;
+    this.width = config.width ||89;
+    this.height = config.height || 0;
+    this.label = config.label || "Click";
+    this.color = config.color || color(212, 30, 30);
+    this.onClick = config.onClick ||
+  
+function() {};
 }
+characterbutton.prototype.draw = function() {
+    if (this.isMouseInside() && mouseIsPressed) {
+        fill(81, 242, 0);
+    }
+    else {
+       fill(this.color); 
+    }
+    rectMode(CENTER);
+    rect(this.x, this.y, this.width, this.height, 0);
+    fill(0, 0, 0);
+    textSize(19);
+    textAlign(CENTER, CENTER);
+    text(this.label, this.x, this.y);
+};
+
+characterbutton.prototype.isMouseInside = function() {
+    return mouseX > this.x-this.width/2 &&
+           mouseX < (this.x + this.width/2) &&
+           mouseY > this.y - this.height/2 &&
+           mouseY < (this.y + this.height/2);
+};
+
+characterbutton.prototype.handleMouseClick = function() {
+    if (this.isMouseInside()) {
+        this.onClick();
+    }
+};
 
 
+var ravenBtn = new characterbutton({
 
+	x: 80,
+  y: 398,
+  widht: 20/2,
+  height:30,
+  label: "This one !",
+  color: (230,187,252),
+  
+  onClick: function() {
+  drawScene3();
+}  
+
+                                   
+})
+
+ravenBtn.draw();
+
+var omegaBtn = new characterbutton({
+
+	x: 205,
+  y: 398,
+  widht: 2,
+  height:30,
+  label: "This one !",
+  color: (230,187,252),
+  
+  onClick: function() {
+  drawScene3();
+} 
+	
+                                   
+})
+
+omegaBtn.draw();  
+
+  
+var raptorBtn = new characterbutton({
+
+	x: 350,
+  y: 398,
+  widht: 2,
+  height:30,
+  label: "This one !",
+  color: (230,187,252),
+  
+  onClick: function() {
+  drawScene3();
+} 
+	
+                                   
+})  
  
-   
+raptorBtn.draw();
 
+
+function optionbutton(config){
+ 		this.x = config.x || 0;
+    this.y = config.y || 0;
+    this.width = config.width ||89;
+    this.height = config.height || 0;
+    this.label = config.label || "Click";
+    this.color = config.color || color(212, 30, 30);
+    this.onClick = config.onClick ||
+  
+function() {};
+
+}
+ 
+optionbutton.prototype.draw = function() {
+    if (this.isMouseInside() && mouseIsPressed) {
+        fill(81, 242, 0);
+    }
+    else {
+       fill(this.color); 
+    }
+    rectMode(CENTER);
+    rect(this.x, this.y, this.width, this.height, 0);
+    fill(0, 0, 0);
+    textSize(19);
+    textAlign(CENTER, CENTER);
+    text(this.label, this.x, this.y);
+};   
+
+optionbutton.prototype.isMouseInside = function() {
+    return mouseX > this.x-this.width/2 &&
+           mouseX < (this.x + this.width/2) &&
+           mouseY > this.y - this.height/2 &&
+           mouseY < (this.y + this.height/2);
+};
+
+optionbutton.prototype.handleMouseClick = function() {
+    if (this.isMouseInside()) {
+        this.onClick();
+    }
+
+
+
+};
+
+var nextBTN = new optionbutton({
+x: 383,
+  y: 72,
+  widht: 2,
+  height:30,
+  label: "next",
+  color: (230,187,252),
+
+  onClick: function() {
+  drawScene3();
+} 
+  
+})
+nextBTN.draw();
+}
 
 //game Scene
 var drawScene3= function(){
 	currrentScene = 3;
   image(backgroundImg,0,0,451,451);  
-  image(img,150,145,92,92);
+  image(img,mouseX,mouseY,90,90)
+
 }
 
 
 
+ draw= function(){
+ if (currentScene === 3){
 
+ }
+ }
 
 
 
 // interavite part 
-mouseClicked= function(createCanvas){
-     {
-       if(currentScene===1){
+mouseClicked= function(){
+  { 
+    if(currentScene===1){
      drawScene2();
-     } 
-  else if(currentScene==2){
+		} 
+  		
+else if(currentScene==2){
   drawScene3();
-  }
-  	} 
+ }
+    
+    
+}
+
+
 };
 
   
