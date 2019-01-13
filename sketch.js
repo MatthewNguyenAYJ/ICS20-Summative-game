@@ -98,7 +98,7 @@ var drawScene2= function(){
   color: (230,187,252),
   
   onClick: function() {
-  drawScene3();
+  drawScene3(); 
   } 
 	
                                    
