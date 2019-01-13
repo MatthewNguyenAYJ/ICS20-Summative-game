@@ -98,7 +98,7 @@ var drawScene2= function(){
   color: (230,187,252),
   
   onClick: function() {
-  drawScene3(); 
+  drawScene3();
   } 
 	
                                    
@@ -197,7 +197,9 @@ background(SpaceInvaders, 10, 10, 840, 560)
 var drawScene8 = function(){
 currentScene = 8;
 background(SpaceInvaders, 10, 10, 840, 560)
+
 }
+
 
 var drawScene9 = function(){
   currentScene = 9;
@@ -209,6 +211,19 @@ var drawScene9 = function(){
 var drawScene10 = function(){
 currentScene = 10;
 background(WinBackground,10,10,840,560)
+fill(0, 239, 3)
+  textSize(30)
+  text("Congratulations! You have successfully save",375,298)
+	 text("the planet from the evil universe master",375,320)}
+
+//the lose scene
+var drawScene11 = function(){
+currentScene = 11;
+background(LoseBackground,10,10,840,560)
+fill(255,0,0);
+  textSize(30)
+ text("Sorry, you fail", 425, 290);
+  text("Try Again ",425, 320 )
 }
 
 
@@ -285,6 +300,8 @@ if (currentScene === 1 ) {
   else if(currentScene === 2 ){
     drawScene3();
 }
+  
+  
 };
        
     function keyReleased() {
@@ -345,4 +362,4 @@ if (currentScene === 1 ) {
     
     
     
-  
+    
