@@ -1,256 +1,348 @@
 var currentScene;
-var backgroundImg;
-var backgroundImg1;
-var img;
-var img1;
-var img2;
-
 var person; 
+var buttonsX = 165;
+var CharactersX = 80;
+var AsteroidsShip
 
 function setup()  {
   
   backgroundImg = loadImage("164833430-terraria-wallpapers.png");
-  backgroundImg1 = loadImage("1391869903220.png");
-  img= loadImage("raven.0.jpg");
-  img1= loadImage("ePvlnjYQ_400x400.jpg");
-	img2= loadImage("fortnite-outfit-raptor.jpg");
-
-  createCanvas(450,450)
+  
+  backgroundImg1 = loadImage("Character Screen Blurred With Title.png");
+  
+  IntroductionTitle = loadImage("Introduction Title.png");
+  
+  SpaceInvaders = loadImage("ScreenshotStarfield.png");
  
-  var button= createButton(" hold then move to reset");{
+  WinBackground = loadImage("space-cartoon-001.jpg ")
+  
+  LoseBackground = loadImage("space01.jpg")
+  
+  omega = loadImage("(Character Buttons) Omega.png");
+  Raven= loadImage("(Character Buttons) Raven .png");
+  Ginger= loadImage("(Character Buttons) Ginger Gunne4r.png");
+	Raptor= loadImage("(Character Buttons) Raptor.png");
+  SkullTrooper = loadImage("(Character Buttons) Skull Trooper.png");
+
+  createCanvas(840,560)
+ 
+  var button= createButton(" Hold and Move To Start!");{
    button.mousePressed(resetSketch);
   }
   
   drawScene1();
   
-}
+  oShip= new omegaShip();
+  rShip = new ravenShip();
+  gShip = new gingerShip();
+  raShip = new raptorShip();
+  skullShip = new SkullTrooperShip();
+  RavensAsteroidShip = new AsteroidsShip();
 
- 
+}
 
 function resetSketch() {
 drawScene1();
 }
 
-// intro scene
+// Scene 1 (introduction screen)
+
 var drawScene1= function(){ 
   currentScene = 1;
-  image(backgroundImg,10,10,450,450);  
+  
+  image(backgroundImg,10,10,860,580);  
   fill(148,209, 26);
-  textSize(30);
-  text("GALACTACRAFT",120,200);
-  textSize(20);
-  text("press anywhere to start", 131,230)
+  
+  image(IntroductionTitle,40,50,750,500);  
+
 }
 
-//Character scene
+//Scene 2 (Character Screen)
+
 var drawScene2= function(){
   currentScene = 2;
-	image(backgroundImg1,10,10,450,450);  
-  ellipse(25,25,25,25);
-	fill(255,255,70);
-  textSize(20);
-  text("Pick Your Character", 120, 100);
-  fill(166, 77, 243);
-  text("Raven", 35,215);
-  image(img, 25,250,100,100);
-	fill(252,179, 95);
-  text("Omega", 170, 215);
-  image(img1, 160,250, 99, 99);
- 	fill(250,0,0);
-  text("Raptor",320,215);
-  image(img2, 300, 250,105,105)
 
+  image(backgroundImg1,10,10,840,560);  
+	  
+  image(Raven, CharactersX ,250, 175 , 175);
 
-function characterbutton (config) {
-	
- 		this.x = config.x || 0;
-    this.y = config.y || 0;
-    this.width = config.width ||89;
-    this.height = config.height || 0;
-    this.label = config.label || "Click";
-    this.color = config.color || color(212, 30, 30);
-    this.onClick = config.onClick ||
-  
-function() {};
-}
-characterbutton.prototype.draw = function() {
-    if (this.isMouseInside() && mouseIsPressed) {
-        fill(81, 242, 0);
-    }
-    else {
-       fill(this.color); 
-    }
-    rectMode(CENTER);
-    rect(this.x, this.y, this.width, this.height, 0);
-    fill(0, 0, 0);
-    textSize(19);
-    textAlign(CENTER, CENTER);
-    text(this.label, this.x, this.y);
-};
+  image(Ginger, CharactersX + 250 , 250, 175 , 175);
+ 	
+  image(Raptor, CharactersX + 500 , 250, 175 , 175)
 
-characterbutton.prototype.isMouseInside = function() {
-    return mouseX > this.x-this.width/2 &&
-           mouseX < (this.x + this.width/2) &&
-           mouseY > this.y - this.height/2 &&
-           mouseY < (this.y + this.height/2);
-};
+ var Raptorbtn = new characterbutton({
 
-characterbutton.prototype.handleMouseClick = function() {
-    if (this.isMouseInside()) {
-        this.onClick();
-    }
-};
-
-
-var ravenBtn = new characterbutton({
-
-	x: 80,
-  y: 398,
-  widht: 20/2,
-  height:30,
-  label: "This one !",
-  color: (230,187,252),
-  
-  onClick: function() {
-  drawScene3();
-}  
-
-                                   
-})
-
-ravenBtn.draw();
-
-var omegaBtn = new characterbutton({
-
-	x: 205,
-  y: 398,
+	x: buttonsX + 505,
+  y: 450,
   widht: 2,
   height:30,
-  label: "This one !",
+  label: "Press 3!",
   color: (230,187,252),
   
   onClick: function() {
   drawScene3();
-} 
+  } 
 	
                                    
-})
+  })
 
-omegaBtn.draw();  
+  Raptorbtn.draw();  
 
-  
-var raptorBtn = new characterbutton({
+  var Ravenbtn = new characterbutton({
 
-	x: 350,
-  y: 398,
+	x: buttonsX ,
+  y: 450,
   widht: 2,
   height:30,
-  label: "This one !",
+  label: "Press 1!",
   color: (230,187,252),
   
   onClick: function() {
   drawScene3();
-} 
+  } 
 	
                                    
-})  
+  })
+
+  Ravenbtn.draw();  
+
+  
+  var GingerBtn = new characterbutton({
+
+	x: buttonsX + 250,
+  y: 450,
+  widht: 2,
+  height:30,
+  label: "Press 2!",
+  color: (230,187,252),
+  
+  onClick: function() {
+  drawScene3();
+  } 
+	                               
+  })  
  
-raptorBtn.draw();
+  GingerBtn.draw();
+ 
+  }  
 
+  // Scene 3 (second character screen)
 
-function optionbutton(config){
- 		this.x = config.x || 0;
-    this.y = config.y || 0;
-    this.width = config.width ||89;
-    this.height = config.height || 0;
-    this.label = config.label || "Click";
-    this.color = config.color || color(212, 30, 30);
-    this.onClick = config.onClick ||
+  var drawScene3= function(){
+	currentScene = 3;
   
-function() {};
+  image(backgroundImg1,10,10,840,560);
+  image(SkullTrooper, CharactersX , 225 , 225 , 225 );
+  image(omega, CharactersX+460 , 225 , 225 , 225);
+
+  var Skullbtn = new characterbutton({
+
+	x: buttonsX+25 ,
+  y: 500,
+  widht: 2,
+  height:30,
+  label: "Press 4!",
+  color: (230,187,252),
+  
+  onClick: function() {
+  drawScene3();
+  }                                    
+  })
+
+  Skullbtn.draw();  
+
+  
+  var OmegaBtn = new characterbutton({
+
+	x: buttonsX + 490,
+  y: 500,
+  widht: 2,
+  height:30,
+  label: "Press 5!",
+  color: (230,187,252),
+  
+  onClick: function() {
+  drawScene3();
+  }                                
+  })  
+ 
+OmegaBtn.draw(); 
+     
+}
+
+// Scene 4 (Game Scene / space invaders)
+
+var drawScene4= function(){
+currentScene = 4;
+image(SpaceInvaders,10,10,840,560);
+}
+  
+// Scene 5 (Game Scene/ space invaders)
+
+var drawScene5 = function(){
+currentScene = 5;
+background(SpaceInvaders, 10, 10, 840, 560)
+}
+
+var drawScene6 = function(){
+currentScene = 6;
+background(SpaceInvaders, 10, 10, 840, 560)
+}
+
+var drawScene7 = function(){
+currentScene = 7;
+background(SpaceInvaders, 10, 10, 840, 560)
+}
+ 
+var drawScene8 = function(){
+currentScene = 8;
+background(SpaceInvaders, 10, 10, 840, 560)
+}
+
+var drawScene9 = function(){
+  currentScene = 9;
+  background(SpaceInvaders, 10, 10, 840, 560)
+  
+}
+
+// the win scene 
+var drawScene10 = function(){
+currentScene = 10;
+background(WinBackground,10,10,840,560)
+}
+
+
+// Draw Functions
+
+  draw = function(){
+  if (currentScene === 3){
+  drawScene3();
+  } 
+   
+   else if (currentScene === 4) {
+      drawScene4();
+      rShip.show();          
+  }
+   
+   else if ( currentScene === 5){
+      drawScene5();
+      gShip.show();
+  } 
+   else if ( currentScene ===6) {
+      drawScene6();
+      raShip.show();
+  }
+    else if (currentScene ===7) {
+      drawScene7();
+      skullShip.show();
+  }
+    else if(currentScene ===8) {
+      drawScene8();
+      oShip.show();
+  }
+    else if(currentScene ===9) {
+      drawScene9();
+      RavensAsteroidShip.render();
+      RavensAsteroidShip.turn();
+      RavensAsteroidShip.update();
+  }
 
 }
  
-optionbutton.prototype.draw = function() {
-    if (this.isMouseInside() && mouseIsPressed) {
-        fill(81, 242, 0);
-    }
-    else {
-       fill(this.color); 
-    }
-    rectMode(CENTER);
-    rect(this.x, this.y, this.width, this.height, 0);
-    fill(0, 0, 0);
-    textSize(19);
-    textAlign(CENTER, CENTER);
-    text(this.label, this.x, this.y);
-};   
+ // Scene Switch
 
-optionbutton.prototype.isMouseInside = function() {
-    return mouseX > this.x-this.width/2 &&
-           mouseX < (this.x + this.width/2) &&
-           mouseY > this.y - this.height/2 &&
-           mouseY < (this.y + this.height/2);
-};
-
-optionbutton.prototype.handleMouseClick = function() {
-    if (this.isMouseInside()) {
-        this.onClick();
-    }
-
-
-
-};
-
-var nextBTN = new optionbutton({
-x: 383,
-  y: 72,
-  widht: 2,
-  height:30,
-  label: "next",
-  color: (230,187,252),
-
-  onClick: function() {
-  drawScene3();
-} 
+ mouseClicked= function(){
+ {  
+ if (currentScene === 1) {
+        drawScene2();
+    } 
   
-})
-nextBTN.draw();
-}
-
-//game Scene
-var drawScene3= function(){
-	currrentScene = 3;
-  image(backgroundImg,0,0,451,451);  
-  image(img,mouseX,mouseY,90,90)
-
-}
-
-
-
- draw= function(){
- if (currentScene === 3){
-
- }
+    else if (currentScene === 2) {
+        drawScene3();
+    } 
+    
+    else if (currentScene === 3) {
+        drawScene4();
+    }
+  
+   else if (currentScene === 4){
+   	
+   }
+   
  }
 
+ };
+ 
+ 
 
+//Game interavite part
 
-// interavite part 
 mouseClicked= function(){
-  { 
-    if(currentScene===1){
-     drawScene2();
-		} 
-  		
-else if(currentScene==2){
-  drawScene3();
- }
-    
-    
+  
+if (currentScene === 1 ) {
+        drawScene2();
+} 
+  else if(currentScene === 2 ){
+    drawScene3();
 }
-
-
 };
+       
+    function keyReleased() {
+      
+    RavensAsteroidShip.setRotation(0);
+      
+    }
 
+    keyPressed= function(){
+   
+   	if (currentScene=== 2 && keyCode=== 49){
+    drawScene4();
+    }
+    else if (currentScene=== 2 && keyCode === 50) {
+    drawScene5();
+    } 
+    else if (currentScene=== 2 && keyCode === 51) {
+    drawScene6();
+    }
+    else if(currentScene ===3 && keyCode === 52){
+    drawScene7();
+    }
+    else if(currentScene ===3 && keyCode === 53){
+    drawScene8();
+    }
+    else if(currentScene ===3 && keyCode === 54){
+    drawScene9();
+    }
+       
+    if(keyCode === 68) {
+    oShip.move (2);
+    skullShip.move (2);
+    rShip.move(2);
+    gShip.move(2);
+    raShip.move(2);
+    console.log("68");
+   }
+  
+   else if (keyCode === 65){
+   oShip.move (-2);
+   skullShip.move(-2);
+   rShip.move(-2);
+   gShip.move(-2);
+   raShip.move(-2);
+   console.log("65");
+  }
+   
+  if( keyCode == 65) {
+    RavensAsteroidShip.setRotation(0.1);
+  }
+  else if (keyCode == 68) {
+    RavensAsteroidShip.setRotation(-0.1);
+  }
+  else if (keyCode == 87);
+      RavensAsteroidShip.boost();
+  }
+    
+    
+    
+    
   
